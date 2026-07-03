@@ -51,3 +51,7 @@ def recursive_forecast(model, last_sequence, n_steps, scaler, window_size=60):
 
     forecast_scaled = np.array(forecast_scaled).reshape(-1, 1)
     return scaler.inverse_transform(forecast_scaled)
+
+def portfolio_daily_returns(returns_df, weights):
+    """Compute weighted daily portfolio returns from a DataFrame of asset returns and a weights dict."""
+    return sum(returns_df[asset] * weight for asset, weight in weights.items())
